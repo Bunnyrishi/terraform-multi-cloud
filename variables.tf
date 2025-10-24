@@ -1,11 +1,33 @@
-variable "region" {
-  type    = string
-  default = "ap-south-1" # Mumbai
+# Multi-Cloud Infrastructure Variables
+
+variable "project_name" {
+  description = "Name of the project"
+  type        = string
+  default     = "multi-cloud-infra"
+}
+
+variable "environment" {
+  description = "Environment name (dev, staging, prod)"
+  type        = string
+  default     = "dev"
+}
+
+variable "aws_region" {
+  description = "AWS region for resources"
+  type        = string
+  default     = "ap-south-1"
+}
+
+variable "azure_location" {
+  description = "Azure location for resources"
+  type        = string
+  default     = "Central India"
 }
 
 variable "allowed_cidr" {
-  type    = string
-  default = "203.0.113.0/32" # replace with your office IP
+  description = "CIDR block allowed for SSH/RDP access"
+  type        = string
+  default     = "0.0.0.0/0" # Restrict this in production
 }
 
 # SSL certificate ARN for ALB (optional)
@@ -26,6 +48,19 @@ variable "route53_zone_id" {
   type        = string
   default     = ""
   description = "Route53 hosted zone ID (optional, needed for ACM DNS validation)"
+}
+
+# Cloud provider selection
+variable "deploy_aws" {
+  description = "Deploy AWS infrastructure"
+  type        = bool
+  default     = true
+}
+
+variable "deploy_azure" {
+  description = "Deploy Azure infrastructure"
+  type        = bool
+  default     = true
 }
 
 # List of all lambdas

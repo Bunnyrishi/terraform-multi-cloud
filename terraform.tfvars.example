@@ -1,0 +1,45 @@
+# Multi-Cloud Infrastructure Configuration Example
+# Copy this file to terraform.tfvars and update with your values
+
+# Project Configuration
+project_name = "my-multi-cloud-app"
+environment  = "dev"
+
+# Cloud Provider Regions
+aws_region     = "ap-south-1"    # Mumbai
+azure_location = "Central India"
+
+# Security Configuration
+allowed_cidr = "203.0.113.0/32"  # Replace with your office/home IP
+
+# Cloud Provider Selection
+deploy_aws   = true
+deploy_azure = true
+
+# Optional SSL Configuration (for production)
+ssl_certificate_arn = ""  # AWS ACM certificate ARN
+domain_name         = ""  # Your domain name
+route53_zone_id     = ""  # Route53 hosted zone ID
+
+# Example values for different environments:
+
+# Development Environment
+# project_name = "myapp-dev"
+# environment  = "dev"
+# deploy_aws   = true
+# deploy_azure = false
+
+# Staging Environment
+# project_name = "myapp-staging"
+# environment  = "staging"
+# deploy_aws   = true
+# deploy_azure = true
+
+# Production Environment
+# project_name = "myapp-prod"
+# environment  = "prod"
+# deploy_aws   = true
+# deploy_azure = true
+# ssl_certificate_arn = "arn:aws:acm:ap-south-1:123456789012:certificate/12345678-1234-1234-1234-123456789012"
+# domain_name = "myapp.com"
+# route53_zone_id = "Z1D633PJN98FT9"

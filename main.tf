@@ -1,7 +1,27 @@
-########################
-# VPC & Networking
-########################
-resource "aws_vpc" "main" {
+# Multi-Cloud Infrastructure Main Configuration
+# Conditionally deploys AWS and/or Azure resources based on variables
+
+terraform {
+  required_version = ">= 1.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.0"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.1"
+    }
+  }
+}
+
+# Conditional AWS Resources
+resource "aws_vpc" "aws_main" {
+  count = var.deploy_aws ? 1 : 0
   cidr_block = "10.0.0.0/16"
   tags = {
     Name     = "phd-vpc"
